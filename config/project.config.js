@@ -3,6 +3,7 @@ const path = require('path')
 const debug = require('debug')('app:config:project')
 const argv = require('yargs').argv
 const ip = require('ip')
+const constants = require('./constants')
 
 debug('Creating default configuration.')
 // ========================================================
@@ -25,7 +26,7 @@ const config = {
   // Server Configuration
   // ----------------------------------
   server_host : ip.address(), // use string 'localhost' to prevent exposure on local network
-  server_port : process.env.PORT || 3000,
+  server_port : constants.PORT || process.env.PORT || 80,
 
   // ----------------------------------
   // Compiler Configuration
@@ -129,5 +130,5 @@ if (overrides) {
 } else {
   debug('No environment overrides found, defaults will be used.')
 }
-
+debug('your host is '+config.compiler_public_path+'......')
 module.exports = config
